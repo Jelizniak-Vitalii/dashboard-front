@@ -28,14 +28,3 @@ jobs:
 
       - name: Build
         run: npm run build:prod
-
-  deploy:
-    runs-on: self-hosted
-    needs: build
-    steps:
-      - name: Run command on remote server
-        run: |
-          cd /public/dashboard-front
-          git pull origin main
-          npm run install
-          npm run build:prod
