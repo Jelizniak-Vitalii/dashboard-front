@@ -27,7 +27,7 @@ jobs:
 #        run: npm run lint
 
       - name: Build
-        run: npm run build
+        run: npm run build:prod
 
   deploy:
     runs-on: self-hosted
