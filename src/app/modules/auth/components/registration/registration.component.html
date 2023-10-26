@@ -1,0 +1,74 @@
+<div class="registration">
+  <div class="registration__header">
+    <h3 class="registration__header-title">
+      Create an Account
+    </h3>
+    <p class="registration__header-description">
+      Create an Account to get access to all the features of our site.
+    </p>
+  </div>
+
+  <form [formGroup]="authForm">
+    <app-input
+      [formControlName]="'first_name'"
+      [invalid]="!!(authForm.get('first_name')?.invalid && authForm.get('first_name')?.touched)"
+      [title]="'First Name'"
+      [placeholder]="'First Name'"
+      [errorMessage]="'First Name is required'"
+    ></app-input>
+
+    <app-input
+      [formControlName]="'last_name'"
+      [invalid]="!!(authForm.get('last_name')?.invalid && authForm.get('last_name')?.touched)"
+      [title]="'Last Name'"
+      [placeholder]="'Last Name'"
+      [errorMessage]="'Last Name is required'"
+    ></app-input>
+
+    <app-input
+      [formControlName]="'email'"
+      [invalid]="email.invalid && email.touched"
+      [title]="'Email'"
+      [placeholder]="'Email'"
+      [type]="'email'"
+      [validationMessage]="'Please enter a valid email address'"
+      [errorMessage]="'Email is required'"
+    ></app-input>
+
+    <app-input
+      [formControlName]="'password'"
+      [invalid]="password.invalid && password.touched"
+      [type]="'password'"
+      [placeholder]="'Password'"
+      [title]="'Password'"
+      [validationMessage]="'Please enter a valid password'"
+      [errorMessage]="'Password is required'"
+    ></app-input>
+
+    <app-input
+      [formControlName]="'phone'"
+      [title]="'Phone'"
+      [placeholder]="'Phone'"
+      [type]="'phone'"
+    ></app-input>
+  </form>
+
+  <div *ngIf="registrationMessage" class="registration__message">
+    <p class="login__message-text">{{registrationMessage}}</p>
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary w-100 mb-2"
+    (click)="onClickRegistration()"
+  >
+    Registration
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-secondary w-100"
+    [routerLink]="appRoutes.AUTH_LOGIN"
+  >
+    Login
+  </button>
+</div>

@@ -1,0 +1,62 @@
+<div class="login">
+  <div class="login__header">
+    <h3 class="login__header-title">
+      Login
+    </h3>
+    <p class="login__header-description">
+      Login to your account
+    </p>
+  </div>
+
+  <form [formGroup]="authForm">
+    <app-input
+      [formControlName]="'email'"
+      [title]="'Email'"
+      [placeholder]="'Email'"
+      [type]="'email'"
+      [invalid]="email.invalid && email.touched"
+      [validationMessage]="'Please enter a valid email address'"
+      [errorMessage]="'Email is required'"
+    ></app-input>
+
+    <app-input
+      [formControlName]="'password'"
+      [type]="'password'"
+      [title]="'Password'"
+      [placeholder]="'Password'"
+      [invalid]="password.invalid && password.touched"
+      [validationMessage]="'Please enter a valid password'"
+      [errorMessage]="'Password is required'"
+    ></app-input>
+  </form>
+
+  <div *ngIf="loginMessage" class="login__message">
+    <p class="login__message-text text-danger">{{loginMessage}}</p>
+  </div>
+
+  <div class="login__forgot-password">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      [routerLink]="appRoutes.AUTH_FORGOT_PASSWORD"
+    >
+      Forgot password ?
+    </button>
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary w-100 mb-2"
+    (click)="onClickLogin()"
+  >
+    Login
+  </button>
+
+  <button
+    type="button"
+    class="btn btn-outline-secondary w-100"
+    [routerLink]="appRoutes.AUTH_REGISTRATION"
+  >
+    Registration
+  </button>
+</div>

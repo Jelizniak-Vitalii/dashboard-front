@@ -1,0 +1,38 @@
+:host {
+  width: 100%;
+}
+
+.profile {
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    background-color: rgb(233, 236, 239);
+    border-radius: 5px;
+
+    &-text {
+      color: var(--text-color);
+      font: bold 8pt Arial;
+    }
+  }
+
+  &__upload-image-btn {
+    input {
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .profile {
+    &__form-content {
+      justify-content: center !important;
+    }
+
+    &__input-wrapper {
+      flex-wrap: wrap;
+    }
+  }
+}

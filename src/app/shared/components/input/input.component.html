@@ -1,0 +1,18 @@
+<label for="custom-input" class="form-label">{{title}}</label>
+<div class="mb-2">
+  <input
+    inputValidation
+    class="form-control input"
+    id="custom-input"
+    [type]="type"
+    [placeholder]="placeholder"
+    [(ngModel)]="inputValue"
+    [readOnly]="readonly"
+    [valid]="invalid"
+    [disabled]="disabled"
+    (ngModelChange)="onInputChange($event)"
+  >
+  <div class="invalid-feedback">
+    {{errorMessage}}
+  </div>
+</div>

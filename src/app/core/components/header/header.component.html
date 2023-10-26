@@ -1,0 +1,24 @@
+<header class="header">
+  <div class="header__wrapper">
+    <div class="header__profile">
+      <div class="header__notification">
+        <i class="bi bi-bell"></i>
+      </div>
+      <div class="header__profile_info">
+        <h5 class="header__profile-name">{{user.first_name}} {{user.last_name}}</h5>
+      </div>
+
+      <button
+        class="header__profile-avatar"
+        type="button"
+        [routerLink]="appRoutes.PROFILE"
+      >
+        <img
+          [src]="user.image_url ?? './assets/images/avatar.png'  | safeUrl"
+          class="header__profile-avatar-img bg-info rounded-circle"
+          alt=""
+        >
+      </button>
+    </div>
+  </div>
+</header>

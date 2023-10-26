@@ -1,0 +1,18 @@
+<div class="app-wrapper">
+  <div class="main-layout">
+    <app-side-menu [user]="user"></app-side-menu>
+    <div class="main-layout__wrapper">
+      <app-header [user]="user"></app-header>
+      <div class="main-layout__content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner
+  bdColor = "rgba(0, 0, 0, 0.8)"
+  size = "medium"
+  color = "#fff"
+  type = "ball-circus"
+  [fullScreen]="true"
+></ngx-spinner>
