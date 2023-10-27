@@ -4,10 +4,11 @@ import { FormControl, ReactiveFormsModule, UntypedFormGroup, Validators } from '
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { mergeMap, of, tap } from 'rxjs';
 
-import { SharedModule } from '../../shared/shared.module';
 import { UploadFileService, UsersHttpService } from '../../shared/services';
 import { AuthFacade, UserFacade } from '../../shared/state/facades';
 import { IUser } from '../../shared/models';
+import { InputComponent } from '../../shared/components';
+import { SafeUrlPipe } from '../../shared/pipes';
 
 @Component({
   standalone: true,
@@ -16,11 +17,12 @@ import { IUser } from '../../shared/models';
   styleUrls: ['./profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    SharedModule,
     ReactiveFormsModule,
     NgOptimizedImage,
     NgIf,
-    DatePipe
+    DatePipe,
+    InputComponent,
+    SafeUrlPipe
   ]
 })
 export class ProfileComponent implements OnInit {

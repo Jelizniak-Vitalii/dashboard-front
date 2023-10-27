@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
 @Directive({
+  standalone: true,
   selector: '[inputValidation]'
 })
 export class InputValidationDirective {

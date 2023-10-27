@@ -5,7 +5,7 @@ import { NgIf, NgOptimizedImage } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent, RegistrationComponent, ForgotPasswordComponent } from './components';
-import { SharedModule } from '../../shared/shared.module';
+import { InputComponent } from '../../shared/components';
 
 @NgModule({
   declarations: [
@@ -18,8 +18,8 @@ import { SharedModule } from '../../shared/shared.module';
     AuthRoutingModule,
     NgOptimizedImage,
     ReactiveFormsModule,
-    SharedModule,
     NgIf,
+    InputComponent,
   ]
 })
 export class AuthModule {}

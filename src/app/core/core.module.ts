@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgIf, NgOptimizedImage, NgStyle } from '@angular/common';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import {
   SideMenuComponent,
@@ -7,10 +9,9 @@ import {
   HeaderComponent,
   HomeComponent
 } from './components';
-import { RouterLink, RouterOutlet } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastComponent } from '../shared/components';
+import { SafeUrlPipe } from '../shared/pipes';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ToastComponent } from '../shared/components';
     RouterLink,
     SharedModule,
     NgxSpinnerModule,
-    ToastComponent
+    ToastComponent,
+    SafeUrlPipe
   ]
 })
 export class CoreModule {}

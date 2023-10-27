@@ -1,20 +1,26 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   forwardRef,
-  Injector,
   Input,
-  OnInit,
   Output
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { InputValidationDirective } from '../../directives';
 
 @Component({
+  standalone: true,
   selector: 'app-input',
   templateUrl: 'input.component.html',
   styleUrls: ['input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    FormsModule,
+    InputValidationDirective
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -1,25 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 
-import { FormControlPipe, SafeUrlPipe } from './pipes';
-import { InputComponent, PopupErrorComponent } from './components';
-import { InputValidationDirective } from './directives';
+import { PopupErrorComponent } from './components';
 
-const PIPES = [
-  FormControlPipe,
-  SafeUrlPipe
-];
+const PIPES: never[] = [];
 
 const COMPONENTS = [
-  InputComponent,
   PopupErrorComponent
 ];
 
-const DIRECTIVES = [
-  InputValidationDirective
-];
+const DIRECTIVES: never[] = [];
 
 @NgModule({
   declarations: [
@@ -29,7 +20,6 @@ const DIRECTIVES = [
   ],
   imports: [
     CommonModule,
-    ToastrModule.forRoot(),
     FormsModule
   ],
   exports: [
