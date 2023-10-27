@@ -9,7 +9,6 @@ import {
   HeaderComponent,
   HomeComponent
 } from './components';
-import { SharedModule } from '../shared/shared.module';
 import { ToastComponent } from '../shared/components';
 import { SafeUrlPipe } from '../shared/pipes';
 
@@ -30,7 +29,6 @@ import { SafeUrlPipe } from '../shared/pipes';
     RouterOutlet,
     NgIf,
     RouterLink,
-    SharedModule,
     NgxSpinnerModule,
     ToastComponent,
     SafeUrlPipe
