@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, HostBinding, inject, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { ToastService } from '../../services/toast.service';
-import { Toast } from '../../models/toast.model';
-import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectorRef, Component, HostBinding, inject, OnDestroy, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
+import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
+
+import { ToastService } from '../../services';
+import { Toast } from '../../models';
 
 @Component({
   standalone: true,
