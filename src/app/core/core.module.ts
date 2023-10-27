@@ -10,6 +10,7 @@ import {
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastComponent } from '../shared/components';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgIf,
     RouterLink,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastComponent
   ]
 })
 export class CoreModule {}
