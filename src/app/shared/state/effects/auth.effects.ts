@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, delay, finalize, map, of, switchMap, tap } from 'rxjs';
+import { catchError, finalize, map, of, switchMap, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as actions from '../actions';
-import { AuthApiService, UserApiService } from '../../services/api';
-import { AuthUserModel } from '../../models/auth.model';
-import { TokenService } from '../../services/token.service';
-import { IUser } from '../../models';
+import { AuthUserModel, IUser } from '../../models';
 import { AppState } from '../app.states';
+import { AuthHttpService, UsersHttpService, TokenService } from '../../services';
 
 @Injectable()
 export class AuthEffects {
@@ -17,21 +15,21 @@ export class AuthEffects {
     private store: Store<AppState>,
     private readonly actions$: Actions,
     private router: Router,
-    private authService: AuthApiService,
-    private userApiService: UserApiService,
+    private authHttpService: AuthHttpService,
+    private usersHttpService: UsersHttpService,
     private tokenService: TokenService
   ) {}
 
   init$ = createEffect(() => this.actions$.pipe(
     ofType(actions.init),
-    switchMap(() => this.userApiService.getUser().pipe(
+    switchMap(() => this.usersHttpService.getUser().pipe(
       switchMap((user) => of(actions.initFinishedSuccess(user.data))),
       catchError(() => of(actions.initFinished(), actions.logout())))
   )));
 
   initUser$ = createEffect(() => this.actions$.pipe(
     ofType(actions.initUser),
-    switchMap(() => this.userApiService.getUser().pipe(
+    switchMap(() => this.usersHttpService.getUser().pipe(
       switchMap((user) => of(actions.initFinished(), actions.initFinishedSuccess(user.data))),
       catchError(() => of(actions.initFinished(), actions.logout())),
       finalize(() => this.router.navigate(['/']))
@@ -41,7 +39,7 @@ export class AuthEffects {
 
   login$ = createEffect(() => this.actions$.pipe(
     ofType(actions.login),
-    switchMap((value: AuthUserModel) => this.authService.login(value)
+    switchMap((value: AuthUserModel) => this.authHttpService.login(value)
       .pipe(
         map((result) => actions.loginSuccess({ token: result.data.token })),
         catchError((error) => of(actions.loginFailure(error)))
@@ -68,7 +66,7 @@ export class AuthEffects {
   $registration = createEffect(() => this.actions$.pipe(
     ofType(actions.registration),
     switchMap((value: IUser) => {
-      return this.authService.register(value)
+      return this.authHttpService.register(value)
         .pipe(
           map((result) => {
             this.tokenService.setJwtToken(result.data.token);

@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inje
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { AuthApiService } from '../../../../shared/services/api';
 import { AppRoutes } from '../../../../shared/constants';
 import { AuthFacade } from '../../../../shared/state/facades';
+import { AuthHttpService } from '../../../../shared/services';
 
 @Component({
   selector: 'app-login',
@@ -39,12 +39,12 @@ export class LoginComponent {
 
   constructor(
     private cdRef: ChangeDetectorRef,
-    private authApiService: AuthApiService,
+    private authHttpService: AuthHttpService,
     private authFacade: AuthFacade
   ) {}
 
   private login() {
-    this.authApiService.login(this.authForm.getRawValue())
+    this.authHttpService.login(this.authForm.getRawValue())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(
         {

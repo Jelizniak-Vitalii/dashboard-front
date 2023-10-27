@@ -3,8 +3,8 @@ import { FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { AppRoutes } from '../../../../shared/constants';
-import { AuthApiService } from '../../../../shared/services/api';
 import { AuthFacade } from '../../../../shared/state/facades';
+import { AuthHttpService } from '../../../../shared/services';
 
 @Component({
   selector: 'app-registration',
@@ -49,12 +49,12 @@ export class RegistrationComponent {
 
   constructor(
     private cdRef: ChangeDetectorRef,
-    private authApiService: AuthApiService,
+    private authHttpService: AuthHttpService,
     private authFacade: AuthFacade
   ) {}
 
   private registration() {
-    this.authApiService.register(this.authForm.getRawValue())
+    this.authHttpService.register(this.authForm.getRawValue())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(
         {

@@ -5,9 +5,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { mergeMap, of, tap } from 'rxjs';
 
 import { SharedModule } from '../../shared/shared.module';
-import { UploadFileService } from '../../shared/services';
+import { UploadFileService, UsersHttpService } from '../../shared/services';
 import { AuthFacade, UserFacade } from '../../shared/state/facades';
-import { UserApiService } from '../../shared/services/api';
 import { IUser } from '../../shared/models';
 
 @Component({
@@ -57,7 +56,7 @@ export class ProfileComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private authFacade: AuthFacade,
     private userFacade: UserFacade,
-    private userApiService: UserApiService,
+    private usersHttpService: UsersHttpService,
     private uploadFileService: UploadFileService
   ) {}
 
@@ -79,12 +78,12 @@ export class ProfileComponent implements OnInit {
     const { id, first_name, last_name, phone, email, age, user_name, image } = this.profileForm.getRawValue();
     const payload = { id, first_name, last_name, phone, age, user_name, email };
 
-    this.userApiService.updateUser(payload)
+    this.usersHttpService.updateUser(payload)
       .pipe(
-        mergeMap(() =>
-          image ? this.userApiService.updateUserImage(this.profileForm.getRawValue())
+        mergeMap((response) =>
+          image ? this.usersHttpService.updateUserImage({ id, image })
             .pipe(tap(() => this.profileForm.get('image')?.reset())) : of(null)
-          .pipe(takeUntilDestroyed(this.destroyRef)))
+            .pipe(takeUntilDestroyed(this.destroyRef)))
       )
       .subscribe(() => this.userFacade.updateUser());
   }
