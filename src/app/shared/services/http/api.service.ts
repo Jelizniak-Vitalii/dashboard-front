@@ -36,7 +36,7 @@ export class ApiService implements IApiBaseActions {
       this.toastService.showErrorToast(options?.errorMessage || error?.error?.message || 'Internal server error');
     }
 
-    return throwError(error);
+    return throwError(() => error);
   }
 
   private startSpinner() {
@@ -61,7 +61,10 @@ export class ApiService implements IApiBaseActions {
       }
     )
       .pipe(
-        tap(() => options?.withoutSpinner || this.startSpinner()),
+        tap(
+          () => options?.withoutSpinner || this.startSpinner(),
+          () => options?.withoutSpinner || this.startSpinner()
+        ),
         catchError((error: HttpErrorResponse) => this.handleError(error, options)),
         finalize(() => options?.withoutSpinner || this.stopSpinner())
       );
@@ -77,7 +80,10 @@ export class ApiService implements IApiBaseActions {
       }
     )
       .pipe(
-        tap(() => options?.withoutSpinner || this.startSpinner()),
+        tap(
+          () => options?.withoutSpinner || this.startSpinner(),
+          () => options?.withoutSpinner || this.startSpinner()
+        ),
         catchError((error: HttpErrorResponse) => this.handleError(error, options)),
         finalize(() => options?.withoutSpinner || this.stopSpinner())
       );
@@ -93,7 +99,10 @@ export class ApiService implements IApiBaseActions {
       }
     )
       .pipe(
-        tap(() => options?.withoutSpinner || this.startSpinner()),
+        tap(
+          () => options?.withoutSpinner || this.startSpinner(),
+          () => options?.withoutSpinner || this.startSpinner()
+        ),
         catchError((error: HttpErrorResponse) => this.handleError(error, options)),
         finalize(() => options?.withoutSpinner || this.stopSpinner())
       );
