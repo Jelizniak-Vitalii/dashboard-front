@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IApiBaseResponse, IUser } from '../../models';
+import { IApiBaseResponse, IProduct, IUser } from '../../models';
 import { ApiService } from '../http';
 
 @Injectable({
@@ -30,5 +30,17 @@ export class UsersHttpService {
     formData.append('file', image);
 
     return this.apiService.post<IApiBaseResponse<IUser>>('users/upload-user-image', formData, { headers: {} });
+  }
+
+  createCategory(title: string) {
+    return this.apiService.post('categories/create', {title})
+  }
+
+  createProduct(data: IProduct) {
+    return this.apiService.post('products/create', data);
+  }
+
+  getProducts() {
+    return this.apiService.get('products');
   }
 }

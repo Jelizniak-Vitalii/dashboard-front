@@ -25,9 +25,9 @@ const sideMenuComponentConfig: SidebarMenuItem[] = [
     icon: 'people'
   },
   {
-    name: 'Order',
-    link: '/order',
-    icon: 'people'
+    name: 'Products',
+    link: '/ecommerce/products',
+    icon: 'box-seam'
   }
 ]
 

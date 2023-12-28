@@ -88,6 +88,16 @@ export class ProfileComponent implements OnInit {
             .pipe(takeUntilDestroyed(this.destroyRef)))
       )
       .subscribe(() => this.userFacade.updateUser());
+
+    // this.usersHttpService.createCategory('Car').subscribe()
+    this.usersHttpService.createProduct({
+      title: 'Iphone 11',
+      category_id: 4,
+      price: '1000'
+    })
+      .subscribe()
+
+    // this.usersHttpService.getProducts().subscribe()
   }
 
   uploadProfileImage(event: Event) {

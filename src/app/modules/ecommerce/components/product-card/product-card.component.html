@@ -1,0 +1,22 @@
+<div class="product-card">
+  <div class="product-card__wrapper">
+    <div class="product-card__image">
+      <img [src]="product?.image_url || '' | safeUrl">
+    </div>
+
+    <div class="product-card__details">
+      <div class="d-flex align-items-center justify-content-between gap-2">
+        <span class="product-card__category badge text-bg-secondary">{{product.category_name}}Headphone</span>
+        <div class="product-card__prices">
+          <span class="product-card__discounted-price">{{product.currency_symbol}}{{product.price_with_discount}}$366</span>
+          <span class="product-card__price">{{product.currency_symbol}}{{product.price}}$732</span>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <span class="product-card__title">{{product.title}}Sony headphone</span>
+        <span class="product-card__rating">{{product.rating}}5</span>
+      </div>
+    </div>
+  </div>
+</div>

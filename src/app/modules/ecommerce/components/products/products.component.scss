@@ -1,0 +1,17 @@
+:host {
+  width: 100%;
+}
+
+.products {
+  &__header {
+    &_title {
+      font-weight: 500;
+      font-size: 26px;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
